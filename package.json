@@ -1,6 +1,9 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
+  "bin": {
+    "genfiff": "bin/genfiff.js"
+  },
   "type": "module",
   "description": "[![Actions Status](https://github.com/1romang1/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/1romang1/frontend-project-46/actions)",
   "main": "index.js",
