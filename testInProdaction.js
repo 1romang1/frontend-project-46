@@ -5,7 +5,7 @@ const jsonParse = (filePath) => {
   return JSON.parse(data);
 };
 
-export const gendiff = (filePath1, filePath2) => {
+export const genDiff = (filePath1, filePath2) => {
   const obj1 = jsonParse(filePath1);
   const obj2 = jsonParse(filePath2);
   const keys1 = Object.keys(obj1).sort();
@@ -33,5 +33,5 @@ export const gendiff = (filePath1, filePath2) => {
   });
   return result.join('\n');
 };
-console.log(gendiff('file1.json', 'file2.json'));
+// console.log(genDiff('file1.json', 'file2.json'));
 export default jsonParse;
