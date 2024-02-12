@@ -2,12 +2,12 @@
 import * as fs from 'node:fs';
 import { Command } from 'commander';
 
-const jsonParse = (filePath) => {
+export const jsonParse = (filePath) => {
   const data = fs.readFileSync(filePath, 'utf8');
   return JSON.parse(data);
 };
 
-const genDiff = (filePath1, filePath2) => {
+export const genDiff = (filePath1, filePath2) => {
   const obj1 = jsonParse(filePath1);
   const obj2 = jsonParse(filePath2);
   const keys1 = Object.keys(obj1).sort();
@@ -50,4 +50,4 @@ program
   });
 program.parse();
 
-export default genDiff;
+// export { jsonParse, genDiff };
