@@ -8,7 +8,7 @@
   "description": "[![Actions Status](https://github.com/1romang1/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/1romang1/frontend-project-46/actions)",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "npx jest"
   },
   "author": "Roma G.",
   "license": "ISC",
