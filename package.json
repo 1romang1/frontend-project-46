@@ -13,6 +13,7 @@
   "author": "Roma G.",
   "license": "ISC",
   "dependencies": {
+    "@jest/globals": "^29.7.0",
     "commander": "^11.1.0"
   },
   "devDependencies": {
