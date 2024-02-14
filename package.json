@@ -8,18 +8,20 @@
   "description": "[![Actions Status](https://github.com/1romang1/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/1romang1/frontend-project-46/actions)",
   "main": "index.js",
   "scripts": {
-    "test": "npx jest"
+    "test": "jest"
   },
   "author": "Roma G.",
   "license": "ISC",
   "dependencies": {
-    "@jest/globals": "^29.7.0",
     "commander": "^11.1.0"
   },
   "devDependencies": {
+    "@jest/globals": "^29.7.0",
     "eslint": "^8.56.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.29.1",
-    "jest": "^29.7.0"
+    "eslint-plugin-jest": "^27.8.0",
+    "jest": "^29.7.0",
+    "jest-cli": "^29.7.0"
   }
 }
