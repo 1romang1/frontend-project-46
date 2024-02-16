@@ -1,7 +1,10 @@
-import { jsonParse, genDiff } from '../index.js';
+import genDiff from '../index.js';
+import parse from '../parsers.js';
 
-const result = jsonParse('./__fixtures__/result.json');
+const resultJson = parse('./__fixtures__/result.txt');
+const resultYml = parse('./__fixtures__/result.txt');
 
 test('gendiff', () => {
-  expect(genDiff('file1.json', 'file2.json')).toEqual(result);
+  expect(genDiff('./__fixtures__/file1.json', './__fixtures__/file2.json')).toEqual(resultJson);
+  expect(genDiff('./__fixtures__/file1.yml', './__fixtures__/file2.yml')).toEqual(resultYml);
 });
