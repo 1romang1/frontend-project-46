@@ -1,13 +1,8 @@
-import * as fs from 'node:fs';
+import parse from './parsers.js';
 
-export const jsonParse = (filePath) => {
-  const data = fs.readFileSync(filePath, 'utf8');
-  return JSON.parse(data);
-};
-
-export const genDiff = (filePath1, filePath2) => {
-  const obj1 = jsonParse(filePath1);
-  const obj2 = jsonParse(filePath2);
+const genDiff = (filePath1, filePath2) => {
+  const obj1 = parse(filePath1);
+  const obj2 = parse(filePath2);
   const keys1 = Object.keys(obj1).sort();
   const keys2 = Object.keys(obj2).sort();
 
@@ -33,3 +28,5 @@ export const genDiff = (filePath1, filePath2) => {
   });
   return result.join('\n');
 };
+
+export default genDiff;
