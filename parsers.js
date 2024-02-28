@@ -1,6 +1,7 @@
 import * as fs from 'node:fs';
 import path from 'node:path';
 import yaml from 'js-yaml';
+import _ from 'lodash';
 
 const jsonParse = (filePath) => JSON.parse(fs.readFileSync(filePath, 'utf8'));
 
