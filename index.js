@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import parse from './parsers.js';
 
 const genDiff = (filePath1, filePath2) => {
@@ -5,28 +6,30 @@ const genDiff = (filePath1, filePath2) => {
   const obj2 = parse(filePath2);
   const keys1 = Object.keys(obj1).sort();
   const keys2 = Object.keys(obj2).sort();
+  const keys = _.union(keys1, keys2);
 
-  const result = [];
-
-  keys1.forEach((key) => {
-    if (Object.hasOwn(obj2, key)) {
-      if (obj1[key] === obj2[key]) {
-        result.push(`  ${key}: ${obj1[key]}`);
-      } else {
-        result.push(`- ${key}: ${obj1[key]}`);
-        result.push(`+ ${key}: ${obj2[key]}`);
-      }
-    } else {
-      result.push(`- ${key}: ${obj1[key]}`);
-    }
-  });
-
-  keys2.forEach((key) => {
+  const result = keys.map((key) => {
     if (!Object.hasOwn(obj1, key)) {
-      result.push(`+ ${key}: ${obj2[key]}`);
+      return { key, value: obj2[key], status: 'added' };
     }
+
+    if (!Object.hasOwn(obj2, key)) {
+      return { key, value: obj1[key], status: 'deleted' };
+    }
+
+    if (obj1[key] !== obj2[key]) {
+      return {
+        key,
+        value: obj1[key],
+        changedValue: obj2[key],
+        status: 'changed',
+      };
+    }
+
+    return { key, value: obj1[key], status: 'unchanged' };
   });
-  return result.join('\n');
+
+  return result;
 };
 
 export default genDiff;
