@@ -19,7 +19,7 @@ const genDiff = (obj1, obj2) => {
     }
 
     if (obj1[key] !== obj2[key]) {
-      if (typeof obj1[key] === 'object' && typeof obj1[key] === 'object') {
+      if (typeof obj1[key] === "object" && obj1[key] !== null && typeof obj2[key] === "object" && obj2[key] !== null) {
         return { key, value: genDiff(obj1[key], obj2[key]), status: 'withChildrens' };
       }
       return {
@@ -29,11 +29,6 @@ const genDiff = (obj1, obj2) => {
         status: "changed",
       };
     }
-
-    if (typeof obj1[key] === "object" && typeof obj2[key] === "object") {
-      return { key, value: genDiff(obj1[key], obj2[key]), status: 'whithChildren' }
-    }
-
     return { key, value: obj1[key], status: "unchanged" };
   });
 
@@ -41,3 +36,5 @@ const genDiff = (obj1, obj2) => {
 };
 
 export default genDiff;
+
+console.log(JSON.stringify(genDiff(obj1, obj2), null, ' '));
