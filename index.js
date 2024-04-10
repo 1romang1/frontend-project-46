@@ -1,9 +1,10 @@
 import _ from "lodash";
 import parse from "./parsers.js";
 
-const genDiff = (filePath1, filePath2) => {
-  const obj1 = parse(filePath1);
-  const obj2 = parse(filePath2);
+const obj1 = parse('./__fixtures__/file1.json');
+const obj2 = parse('./__fixtures__/file2.json');
+
+const genDiff = (obj1, obj2) => {
   const keys1 = Object.keys(obj1).sort();
   const keys2 = Object.keys(obj2).sort();
   const keys = _.union(keys1, keys2);
@@ -18,6 +19,9 @@ const genDiff = (filePath1, filePath2) => {
     }
 
     if (obj1[key] !== obj2[key]) {
+      if (typeof obj1[key] === 'object' && typeof obj1[key] === 'object') {
+        return { key, value: genDiff(obj1[key], obj2[key]), status: 'withChildrens' };
+      }
       return {
         key,
         value: obj1[key],
@@ -37,5 +41,3 @@ const genDiff = (filePath1, filePath2) => {
 };
 
 export default genDiff;
-
-console.log(JSON.stringify(genDiff('./__fixtures__/file1.json', './__fixtures__/file2.json'), null, ' '));
