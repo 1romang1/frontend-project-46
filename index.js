@@ -5,9 +5,9 @@ const obj1 = parse('./__fixtures__/file1.json');
 const obj2 = parse('./__fixtures__/file2.json');
 
 const genDiff = (obj1, obj2) => {
-  const keys1 = Object.keys(obj1).sort();
-  const keys2 = Object.keys(obj2).sort();
-  const keys = _.union(keys1, keys2);
+  const keys1 = Object.keys(obj1);
+  const keys2 = Object.keys(obj2);
+  const keys = _.union(keys1, keys2).sort();
 
   const result = keys.map((key) => {
     if (!Object.hasOwn(obj1, key)) {
