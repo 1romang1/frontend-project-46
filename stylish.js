@@ -1,5 +1,28 @@
 import _ from 'lodash';
-// import genDiff from "./sandbox.js";
+
+const stringify = (node, depth) => {
+  const iter1 = (tree, depth1) => {
+    if (!_.isObject(tree)) {
+      return `${tree}`;
+    }
+    const SPACE_COUNT1 = 4;
+    const REPLACER1 = '*';
+    const indentSize = depth1 * SPACE_COUNT1;
+    const currentIndent = REPLACER1.repeat(indentSize);
+    const bracketIndent = REPLACER1.repeat(indentSize - SPACE_COUNT1);
+    const lines = Object
+      .entries(tree)
+      .map(([key, val]) => `${currentIndent}${key}: ${iter1(val, depth1 + 1)}`);
+// console.log(lines)
+    return [
+      '{',
+      ...lines,
+      `${bracketIndent}}`,
+    ].join('\n');
+  };
+
+  return iter1(node, depth);
+};
 
 const stylish = (arr) => {
   const iter = (currentValue, depth) => {
@@ -16,11 +39,11 @@ const stylish = (arr) => {
       const { key, value, changedValue, status } = item;
       switch (status) {
         case 'added':
-          return `${currentIndent}+ ${key}: ${value}`;
+          return `${currentIndent}+ ${key}: ${stringify(value, depth + 1)}`;
         case 'deleted':
-          return `${currentIndent}- ${key}: ${value}`;
+          return `${currentIndent}- ${key}: ${stringify(value, depth + 1)}`;
         case 'changed':
-          return `${currentIndent}- ${key}: ${value}\n${currentIndent}+ ${key}: ${changedValue}`;
+          return `${currentIndent}- ${key}: ${stringify(stringify(value, depth + 1))}\n${currentIndent}+ ${key}: ${stringify(changedValue, depth + 1)}`;
         case 'withChildrens':
           return `${currentIndent}  ${key}: ${iter(value, depth + 1)}`;
         case 'unchanged':
