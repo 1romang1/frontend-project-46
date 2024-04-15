@@ -9,7 +9,7 @@ const genDiff = (tree1, tree2) => {
 
   const result = keys.map((key) => {
     if (!Object.hasOwn(tree1, key)) {
-      return { key, value: obj2[key], status: 'added' };
+      return { key, value: tree2[key], status: 'added' };
     }
 
     if (!Object.hasOwn(tree2, key)) {
@@ -44,4 +44,4 @@ const genDiff = (tree1, tree2) => {
 
 export default genDiff;
 
-console.log(JSON.stringify(genDiff(obj1, obj2), null, ' '));
+// console.log(JSON.stringify(genDiff(obj1, obj2), null, ' '));
