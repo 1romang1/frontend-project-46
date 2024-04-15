@@ -1,10 +1,10 @@
 import _ from 'lodash';
 import parse from './parsers.js';
 
-const obj1 = parse('./__fixtures__/file1.json');
-const obj2 = parse('./__fixtures__/file2.json');
+// const obj1 = parse('./__fixtures__/file1.json');
+// const obj2 = parse('./__fixtures__/file2.json');
 
-const genDiff = (tree1, tree2) => {
+const buildAstTree = (tree1, tree2) => {
   const keys = _.union(Object.keys(tree1), Object.keys(tree2)).sort();
 
   const result = keys.map((key) => {
@@ -25,7 +25,7 @@ const genDiff = (tree1, tree2) => {
       ) {
         return {
           key,
-          value: genDiff(tree1[key], tree2[key]),
+          value: buildAstTree(tree1[key], tree2[key]),
           status: 'withChildrens',
         };
       }
@@ -42,6 +42,6 @@ const genDiff = (tree1, tree2) => {
   return result;
 };
 
-export default genDiff;
+export default buildAstTree;
 
-// console.log(JSON.stringify(genDiff(obj1, obj2), null, ' '));
+// console.log(JSON.stringify(buildAstTree(obj1, obj2), null, ' '));
