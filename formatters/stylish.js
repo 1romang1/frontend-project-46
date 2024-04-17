@@ -11,7 +11,7 @@ const stringify = (node, depth) => {
     const currentIndent = REPLACER1.repeat(indentSize);
     const bracketIndent = REPLACER1.repeat(indentSize - SPACE_COUNT1);
     const lines = Object.entries(tree).map(
-      ([key, val]) => `${currentIndent}${key}: ${iter1(val, depth1 + 1)}`
+      ([key, val]) => `${currentIndent}${key}: ${iter1(val, depth1 + 1)}`,
     );
     return ['{', ...lines, `${bracketIndent}}`].join('\n');
   };
@@ -31,7 +31,9 @@ const stylish = (arr) => {
     const currentIndent = REPLACER.repeat(indentSize - 2);
     const bracketIndent = REPLACER.repeat(indentSize - SPACE_COUNT);
     const result = currentValue.map((item) => {
-      const { key, value, changedValue, status } = item;
+      const {
+        key, value, changedValue, status,
+      } = item;
       switch (status) {
         case 'added':
           return `${currentIndent}+ ${key}: ${stringify(value, depth + 1)}`;
@@ -39,7 +41,7 @@ const stylish = (arr) => {
           return `${currentIndent}- ${key}: ${stringify(value, depth + 1)}`;
         case 'changed':
           return `${currentIndent}- ${key}: ${stringify(
-            stringify(value, depth + 1)
+            stringify(value, depth + 1),
           )}\n${currentIndent}+ ${key}: ${stringify(changedValue, depth + 1)}`;
         case 'withChildrens':
           return `${currentIndent}  ${key}: ${iter(value, depth + 1)}`;
