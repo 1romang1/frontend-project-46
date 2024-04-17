@@ -4,6 +4,8 @@ import plain from './plain.js';
 const formater = (astTree, fotmatName) => {
   if (fotmatName === 'plain') {
     return plain(astTree);
+  } else if (fotmatName === 'json') {
+    return JSON.stringify(stylish(astTree));
   }
   return stylish(astTree);
 };
