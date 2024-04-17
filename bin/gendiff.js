@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
-import genDiff from '../sandbox.js';
-import parse from '../parsers.js';
-import buildAstTree from '../index.js';
+import genDiff from '../index.js';
 
 const program = new Command();
 
@@ -14,8 +12,6 @@ program
   .argument('<filepath2>', 'path to file2')
   .option('-f, --format <type>', 'output format', 'stylish')
   .action((filepath1, filepath2, options) => {
-    // const formater = options.format;
-    console.log(genDiff(buildAstTree(parse(filepath1), parse(filepath2)), options.format));
-    // console.log(program.opts().format);
+    console.log(genDiff(filepath1, filepath2, options.format));
   });
 program.parse();

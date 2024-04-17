@@ -1,47 +1,12 @@
-import _ from 'lodash';
 import parse from './parsers.js';
+import buildAstTree from './buildAstTree.js';
+import formater from './formatters/index.js';
 
-// const obj1 = parse('./__fixtures__/file1.json');
-// const obj2 = parse('./__fixtures__/file2.json');
-
-const buildAstTree = (tree1, tree2) => {
-  const keys = _.union(Object.keys(tree1), Object.keys(tree2)).sort();
-
-  const result = keys.map((key) => {
-    if (!Object.hasOwn(tree1, key)) {
-      return { key, value: tree2[key], status: 'added' };
-    }
-
-    if (!Object.hasOwn(tree2, key)) {
-      return { key, value: tree1[key], status: 'deleted' };
-    }
-
-    if (tree1[key] !== tree2[key]) {
-      if (
-        typeof tree1[key] === 'object'
-        && tree1[key] !== null
-        && typeof tree2[key] === 'object'
-        && tree2[key] !== null
-      ) {
-        return {
-          key,
-          value: buildAstTree(tree1[key], tree2[key]),
-          status: 'withChildrens',
-        };
-      }
-      return {
-        key,
-        value: tree1[key],
-        changedValue: tree2[key],
-        status: 'changed',
-      };
-    }
-    return { key, value: tree1[key], status: 'unchanged' };
-  });
-
-  return result;
+const genDiff = (filePath1, filePath2, formatName = 'stylish') => {
+  const tree1 = parse(filePath1);
+  const tree2 = parse(filePath2);
+  const astTree = buildAstTree(tree1, tree2);
+  return formater(astTree, formatName);
 };
 
-export default buildAstTree;
-
-// console.log(JSON.stringify(buildAstTree(obj1, obj2), null, ' '));
+export default genDiff;
