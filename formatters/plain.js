@@ -19,15 +19,11 @@ const plain = (arr) => {
       const currentPathToValue = pathToValue === '' ? `${key}` : `${pathToValue}.${key}`;
       switch (status) {
         case 'added':
-          return `Property '${currentPathToValue}' was added with value: ${stringify(
-            value,
-          )}`;
+          return `Property '${currentPathToValue}' was added with value: ${stringify(value)}`;
         case 'deleted':
           return `Property '${currentPathToValue}' was removed`;
         case 'changed':
-          return `Property '${currentPathToValue}' was updated. From ${stringify(
-            value,
-          )} to ${stringify(changedValue)}`;
+          return `Property '${currentPathToValue}' was updated. From ${stringify(value)} to ${stringify(changedValue)}`;
         case 'withChildrens':
           return iter(value, currentPathToValue);
         case 'unchanged':
@@ -35,7 +31,6 @@ const plain = (arr) => {
         default:
         // default;
       }
-
       return result;
     });
     return result.join('\n');
