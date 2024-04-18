@@ -7,3 +7,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/acfac219a92a42d52fd5/maintainability)](https://codeclimate.com/github/1romang1/frontend-project-46/maintainability)
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/acfac219a92a42d52fd5/test_coverage)](https://codeclimate.com/github/1romang1/frontend-project-46/test_coverage)
+
+### Video instruction
+
+[![asciicast](https://asciinema.org/a/h4R6uMhVGPF4ohtrj2u24dBz9.svg)](https://asciinema.org/a/h4R6uMhVGPF4ohtrj2u24dBz9)
