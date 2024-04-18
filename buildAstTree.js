@@ -11,17 +11,10 @@ const buildAstTree = (tree1, tree2) => {
     }
     if (tree1[key] !== tree2[key]) {
       if (typeof tree1[key] === 'object' && tree1[key] !== null && typeof tree2[key] === 'object' && tree2[key] !== null) {
-        return {
-          key,
-          value: buildAstTree(tree1[key], tree2[key]),
-          status: 'withChildrens',
-        };
+        return { key, value: buildAstTree(tree1[key], tree2[key]), status: 'withChildrens' };
       }
       return {
-        key,
-        value: tree1[key],
-        changedValue: tree2[key],
-        status: 'changed',
+        key, value: tree1[key], changedValue: tree2[key], status: 'changed',
       };
     }
     return { key, value: tree1[key], status: 'unchanged' };
