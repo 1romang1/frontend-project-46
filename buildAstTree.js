@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 const buildAstTree = (tree1, tree2) => {
-  const keys = _.union(Object.keys(tree1), Object.keys(tree2)).sort();
+  const keys = _.sortBy(_.union(Object.keys(tree1), Object.keys(tree2)));
   const result = keys.map((key) => {
     if (!Object.hasOwn(tree1, key)) {
       return { key, value: tree2[key], status: 'added' };
