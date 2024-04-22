@@ -2,13 +2,14 @@ import stylish from './stylish.js';
 import plain from './plain.js';
 
 const formater = (astTree, fotmatName) => {
-  if (fotmatName === 'plain') {
-    return plain(astTree);
+  switch (fotmatName) {
+    case 'plain':
+      return plain(astTree);
+    case 'json':
+      return JSON.stringify(stylish(astTree));
+    default:
+      return stylish(astTree);
   }
-  if (fotmatName === 'json') {
-    return JSON.stringify(stylish(astTree));
-  }
-  return stylish(astTree);
 };
 
 export default formater;
