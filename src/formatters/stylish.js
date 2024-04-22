@@ -48,10 +48,8 @@ const stylish = (arr) => {
         case 'unchanged':
           return `${currentIndent}  ${key}: ${value}`;
         default:
-        // default;
+          throw new Error(`Unknown status: '${status}'!`);
       }
-
-      return result;
     });
     return ['{', ...result, `${bracketIndent}}`].join('\n');
   };

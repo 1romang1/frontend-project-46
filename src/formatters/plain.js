@@ -29,9 +29,8 @@ const plain = (arr) => {
         case 'unchanged':
           return [];
         default:
-        // default;
+          throw new Error(`Unknown status: '${status}'!`);
       }
-      return result;
     });
     return result.join('\n');
   };
