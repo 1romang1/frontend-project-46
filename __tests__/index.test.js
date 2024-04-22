@@ -1,5 +1,5 @@
 import * as fs from 'node:fs';
-import genDiff from '../index.js';
+import genDiff from '../src/index.js';
 
 const result = fs.readFileSync('./__fixtures__/result1.txt', 'utf8');
 const resultPlain = fs.readFileSync('./__fixtures__/plain.txt', 'utf8');
