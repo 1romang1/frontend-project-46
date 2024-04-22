@@ -14,7 +14,7 @@ const buildAstTree = (tree1, tree2) => {
         return {
           key,
           value: buildAstTree(tree1[key], tree2[key]),
-          status: 'withChildrens',
+          status: 'withChildren',
         };
       }
       return {

@@ -24,7 +24,7 @@ const plain = (arr) => {
           return `Property '${currentPathToValue}' was removed`;
         case 'changed':
           return `Property '${currentPathToValue}' was updated. From ${stringify(value)} to ${stringify(changedValue)}`;
-        case 'withChildrens':
+        case 'withChildren':
           return iter(value, currentPathToValue);
         case 'unchanged':
           return [];

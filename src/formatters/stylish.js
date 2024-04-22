@@ -43,7 +43,7 @@ const stylish = (arr) => {
           return `${currentIndent}- ${key}: ${stringify(
             stringify(value, depth + 1),
           )}\n${currentIndent}+ ${key}: ${stringify(changedValue, depth + 1)}`;
-        case 'withChildrens':
+        case 'withChildren':
           return `${currentIndent}  ${key}: ${iter(value, depth + 1)}`;
         case 'unchanged':
           return `${currentIndent}  ${key}: ${value}`;
