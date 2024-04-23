@@ -6,7 +6,7 @@ import buildAstTree from './buildAstTree.js';
 import formater from './formatters/index.js';
 
 const getFileData = (filePath) => fs.readFileSync(filePath, 'utf8');
-const getFileExtension = (filePath) => filePath.split('.').pop();
+const getFileExtension = (filePath) => filePath.split('.').reverse()[0];
 
 const genDiff = (filePath1, filePath2, formatName = 'stylish') => {
   const currentDir = cwd();
