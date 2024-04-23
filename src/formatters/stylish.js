@@ -20,7 +20,7 @@ const stringify = (node, depth) => {
   return iter(node, depth);
 };
 
-const stylish = (arr) => {
+const stylish = (astTree) => {
   const iter = (currentValue, depth) => {
     if (!_.isObject(currentValue)) {
       return `  ${currentValue}`;
@@ -50,7 +50,7 @@ const stylish = (arr) => {
     });
     return ['{', ...result, `${bracketIndent}}`].join('\n');
   };
-  return iter(arr, 1);
+  return iter(astTree, 1);
 };
 
 export default stylish;
