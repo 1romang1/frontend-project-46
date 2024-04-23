@@ -1,13 +1,12 @@
 import * as fs from 'node:fs';
 import path from 'node:path';
 import { cwd } from 'node:process';
-import _ from 'lodash';
 import parse from './parsers.js';
 import buildAstTree from './buildAstTree.js';
 import formater from './formatters/index.js';
 
 const getFileData = (filePath) => fs.readFileSync(filePath, 'utf8');
-const getFileExtension = (filePath) => _.last(filePath.split('.'));
+const getFileExtension = (filePath) => filePath.split('.').pop();
 
 const genDiff = (filePath1, filePath2, formatName = 'stylish') => {
   const currentDir = cwd();
